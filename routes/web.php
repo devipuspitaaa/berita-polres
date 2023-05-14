@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\PostinganController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,4 +20,6 @@ Route::get('/', function () {
 });
 
 // ADMIN
-Route::resource('admin/dashboard', DashboardController::class);
+Route::get('/dashboard', [DashboardController::class, 'index']);
+/** Tambah Postingan */
+Route::get('/tambah', [PostinganController::class, 'index']);
