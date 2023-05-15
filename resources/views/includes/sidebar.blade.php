@@ -54,7 +54,7 @@
                     <div class="collapse" id="base">
                         <ul class="nav nav-collapse">
                             <li>
-                                <a href="components/avatars.html">
+                                <a href="/berita">
                                     <span class="sub-item">Tambah Berita</span>
                                 </a>
                             </li>

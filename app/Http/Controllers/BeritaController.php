@@ -2,9 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Berita;
+use App\Models\Kategori;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 
-class PostinganController extends Controller
+class BeritaController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,7 +17,8 @@ class PostinganController extends Controller
      */
     public function index()
     {
-        return view('tambahPostingan.create');
+        $berita = Berita::all();
+        return view('back.berita.index', ['berita' => $berita]);
     }
 
     /**
@@ -23,7 +28,8 @@ class PostinganController extends Controller
      */
     public function create()
     {
-        //
+        $kategori = Kategori::all();
+        return view('back.berita.create', compact('kategori'));
     }
 
     /**
@@ -34,7 +40,20 @@ class PostinganController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'judul' => 'required|min:4'
+
+        ]);
+
+        $data = $request->all();
+        $data['slug'] = Str::slug($request->judul);
+        $data['user_id'] = Auth::id();
+        $data['views'] = 0;
+        $data['gambar'] = $request->file('gambar')->store('berita');
+        
+        Berita::create($data);
+
+        return redirect()->route('berita.index')->with(['success' => 'Data Berhasil Disimpan']);
     }
 
     /**

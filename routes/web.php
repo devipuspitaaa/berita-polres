@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BeritaController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\KategoriController;
@@ -26,8 +27,14 @@ Route::get('/', function () {
 Route::get('/tambah', [PostinganController::class, 'index']);
 Auth::routes();
 
-Route::get('/dashboard', [App\Http\Controllers\DashboardController::class, 'index']);
-Route::resource('/kategori', KategoriController::class);
+Route::get('/dashboard', [DashboardController::class, 'index']);
+Route::resource('kategori', KategoriController::class);
 
+/** Berita */
+Route::resource('berita', BeritaController::class);
+Route::get('/createBerita', [BeritaController::class, 'create']);
+Route::post('createberita', [BeritaController::class, 'store'])->name('berita.create');
+
+/** End : Berita */
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

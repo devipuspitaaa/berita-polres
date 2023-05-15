@@ -14,7 +14,15 @@ class CreateBeritaTable extends Migration
     public function up()
     {
         Schema::create('berita', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
+            $table->string('judul');
+            $table->text('slug');
+            $table->text('body');
+            $table->integer('kategori_id');
+            $table->integer('user_id');
+            $table->string('gambar');
+            $table->boolean('is_active');
+            $table->integer('views');
             $table->timestamps();
         });
     }
