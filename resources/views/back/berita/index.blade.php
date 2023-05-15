@@ -61,7 +61,7 @@
                                         <td>{{ $b->user->name}}</td>
                                         <td>
                                         <form action="{{ route('berita.destroy',$b->id) }}" method="POST">
-                                                <a href="{{ route('berita.edit',$b->id) }}">
+                                                <a href="{{ url('berita/update/'. $b->id) }}">
                                                     <button class="btn btn-link btn-primary btn-lg" type="button" rel="tooltip">
                                                         <i class="fa fa-edit"></i>
                                                     </button>
@@ -72,7 +72,7 @@
                                                     <i class="fa fa-times"></i>
                                                 </button>
                                             </form>
-                                            </td>
+                                        </td>
                                     </tr>
                                     @endforeach
 

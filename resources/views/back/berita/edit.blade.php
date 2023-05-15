@@ -42,8 +42,8 @@
                             </ul>
                         </div>
                         @endif
-                        <form method="post" action="{{ route('berita.edit', $berita->id) }}" enctype="multipart/form-data">
-                            @csrf
+                        <form method="post" action="{{  url('berita-update/' .$berita->id) }}" enctype="multipart/form-data">
+                            {{csrf_field()}}
                             @method('PUT')
                             <div class="row">
                                 <div class="col-md-6 col-lg-12">

@@ -34,6 +34,10 @@ Route::resource('kategori', KategoriController::class);
 Route::resource('berita', BeritaController::class);
 Route::get('/createBerita', [BeritaController::class, 'create']);
 Route::post('createberita', [BeritaController::class, 'store'])->name('berita.create');
+Route::put('/berita-update/{id}', [BeritaController::class, 'update']);
+Route::get('berita/update/{id}', [BeritaController::class, 'edit']);
+
+
 
 /** End : Berita */
 
