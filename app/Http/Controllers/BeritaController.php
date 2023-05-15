@@ -6,6 +6,7 @@ use App\Models\Berita;
 use App\Models\Kategori;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 class BeritaController extends Controller
@@ -50,7 +51,7 @@ class BeritaController extends Controller
         $data['user_id'] = Auth::id();
         $data['views'] = 0;
         $data['gambar'] = $request->file('gambar')->store('berita');
-        
+
         Berita::create($data);
 
         return redirect()->route('berita.index')->with(['success' => 'Data Berhasil Disimpan']);
@@ -75,7 +76,10 @@ class BeritaController extends Controller
      */
     public function edit($id)
     {
-        //
+        $berita = Berita::find($id);
+        $kategori = Kategori::all();
+
+        return view('back.berita.edit', ['berita' => $berita, 'kategori' => $kategori]);
     }
 
     /**
@@ -87,7 +91,32 @@ class BeritaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        if (empty($request->file('gambar'))) {
+            $berita = Berita::find($id);
+            $berita->update([
+                'judul' => $request->judul,
+                'slug' => Str::slug($request->judul),
+                'body' => $request->body,
+                'kategori' => $request->kategori_id,
+                'is_active' => $request->is_active,
+                'user_id' => Auth::id(),
+            ]);
+
+            return redirect()->route('berita.index')->with(['success' => 'Data Berhasil Diupdate']);
+        } else {
+            $berita = Berita::find($id);
+            Storage::delete($berita->gambar);
+            $berita->update([
+                'judul' => $request->judul,
+                'slug' => Str::slug($request->judul),
+                'body' => $request->body,
+                'kategori' => $request->kategori_id,
+                'user_id' => Auth::id(),
+                'gambar' => $request->file('gambar')->store('berita'),
+                'is_active' => $request->is_active,
+            ]);
+            return redirect()->route('berita.index')->with(['success' => 'Data Berhasil Diupdate']);
+        }
     }
 
     /**
@@ -98,6 +127,10 @@ class BeritaController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $berita = Berita::find($id);
+        Storage::delete($berita->gambar);
+        $berita->delete();
+
+        return redirect()->route('berita.index')->with(['success' => 'Data Berhasil Dihapus']);
     }
 }
