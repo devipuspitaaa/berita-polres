@@ -76,7 +76,7 @@
                             </div>
                             <div class="col-xl-9 col-lg-9 col-md-9">
                                 <div class="header-banner f-right ">
-                                    <img src="aznews/img/hero/header_card.jpg" alt="">
+                                    <h1>SEPUTAR KABAR</h1>
                                 </div>
                             </div>
                         </div>
@@ -95,18 +95,19 @@
                                     <nav>
                                         <ul id="navigation">
                                             <li><a href="index.html">Home</a></li>
-                                            <li><a href="categori.html">Category</a></li>
-                                            <li><a href="about.html">About</a></li>
-                                            <li><a href="latest_news.html">Latest News</a></li>
-                                            <li><a href="contact.html">Contact</a></li>
-                                            <li><a href="#">Pages</a>
+                                            <li class="nav-item dropdown active">
+                                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                    Kategori
+                                                </a>
                                                 <ul class="submenu">
-                                                    <li><a href="elements.html">Element</a></li>
-                                                    <li><a href="blog.html">Blog</a></li>
-                                                    <li><a href="single-blog.html">Blog Details</a></li>
-                                                    <li><a href="details.html">Categori Details</a></li>
+                                                    @foreach ($kategori as $cat)
+                                                    <li><a class="dropdown-item" href="{{$cat -> slug}}">{{$cat -> nama_kategori}}</a></li>
+                                                    @endforeach
                                                 </ul>
                                             </li>
+                                            <li><a href="about.html">About</a></li>
+                                            <li><a href="contact.html">Contact</a></li>
+
                                         </ul>
                                     </nav>
                                 </div>
@@ -143,13 +144,13 @@
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="trending-tittle">
-                                <strong>Trending now</strong>
+                                <strong>Seputar Kabar</strong>
                                 <!-- <p>Rem ipsum dolor sit amet, consectetur adipisicing elit.</p> -->
                                 <div class="trending-animated">
                                     <ul id="js-news" class="js-hidden">
-                                        <li class="news-item">Bangladesh dolor sit amet, consectetur adipisicing elit.</li>
-                                        <li class="news-item">Spondon IT sit amet, consectetur.......</li>
-                                        <li class="news-item">Rem ipsum dolor sit amet, consectetur adipisicing elit.</li>
+                                        <li class="news-item">Seputar kabar POLRES LAMONGAN</li>
+                                        <li class="news-item">Berita baru</li>
+                                        <li class="news-item">yang telah terupdate</li>
                                     </ul>
                                 </div>
 
@@ -157,116 +158,89 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-lg-8">
-                            <!-- Trending Top -->
-                            <div class="trending-top mb-30">
-                                <div class="trend-top-img">
-                                    <img src="assets/img/trending/trending_top.jpg" alt="">
-                                    <div class="trend-top-cap">
-                                        <span>Appetizers</span>
-                                        <h2><a href="details.html">Welcome To The Best Model Winner<br> Contest At Look of the year</a></h2>
-                                    </div>
+                        @forelse ($berita as $row)
+                        <div class="col-lg-12">
+                            <div class="single-bottom mb-35">
+                                <div class="trend-bottom-img mb-10">
+                                    <center><img src="{{ asset('uploads/' . $row->gambar) }}" width="500"></center>
                                 </div>
-                            </div>
-                            <!-- Trending Bottom -->
-                            <div class="trending-bottom">
-                                <div class="row">
-                                    <div class="col-lg-4">
-                                        <div class="single-bottom mb-35">
-                                            <div class="trend-bottom-img mb-30">
-                                                <img src="aznews/img/trending/trending_bottom1.jpg" alt="">
-                                            </div>
-                                            <div class="trend-bottom-cap">
-                                                <span class="color1">Lifestyple</span>
-                                                <h4><a href="details.html">Get the Illusion of Fuller Lashes by “Mascng.”</a></h4>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-4">
-                                        <div class="single-bottom mb-35">
-                                            <div class="trend-bottom-img mb-30">
-                                                <img src="aznews/img/trending/trending_bottom2.jpg" alt="">
-                                            </div>
-                                            <div class="trend-bottom-cap">
-                                                <span class="color2">Sports</span>
-                                                <h4>
-                                                    <h4><a href="details.html">Get the Illusion of Fuller Lashes by “Mascng.”</a></h4>
-                                                </h4>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-4">
-                                        <div class="single-bottom mb-35">
-                                            <div class="trend-bottom-img mb-30">
-                                                <img src="aznews/img/trending/trending_bottom3.jpg" alt="">
-                                            </div>
-                                            <div class="trend-bottom-cap">
-                                                <span class="color3">Travels</span>
-                                                <h4><a href="details.html"> Welcome To The Best Model Winner Contest</a></h4>
-                                            </div>
-                                        </div>
-                                    </div>
+                                <div class="trend-bottom-cap">
+                                    <h4><a href="">{{ $row->judul }}</a></h4>
+                                    <small class="card-text">{!! $row->body !!}</small>
                                 </div>
+                                <div class="card-body">
+                                    <a href="" class="card-link">{{ $row->user->name }}</a>
+                                    <a href="" class="card-link">{{ $row->kategori->nama_kategori }}</a>
+                                </div>
+                                <hr>
                             </div>
                         </div>
-                        <!-- Riht content -->
-                        <div class="col-lg-4">
-                            <div class="trand-right-single d-flex">
-                                <div class="trand-right-img">
-                                    <img src="aznews/img/trending/right1.jpg" alt="">
-                                </div>
-                                <div class="trand-right-cap">
-                                    <span class="color1">Concert</span>
-                                    <h4><a href="details.html">Welcome To The Best Model Winner Contest</a></h4>
-                                </div>
-                            </div>
-                            <div class="trand-right-single d-flex">
-                                <div class="trand-right-img">
-                                    <img src="aznews/img/trending/right2.jpg" alt="">
-                                </div>
-                                <div class="trand-right-cap">
-                                    <span class="color3">sea beach</span>
-                                    <h4><a href="details.html">Welcome To The Best Model Winner Contest</a></h4>
-                                </div>
-                            </div>
-                            <div class="trand-right-single d-flex">
-                                <div class="trand-right-img">
-                                    <img src="aznews/img/trending/right3.jpg" alt="">
-                                </div>
-                                <div class="trand-right-cap">
-                                    <span class="color2">Bike Show</span>
-                                    <h4><a href="details.html">Welcome To The Best Model Winner Contest</a></h4>
-                                </div>
-                            </div>
-                            <div class="trand-right-single d-flex">
-                                <div class="trand-right-img">
-                                    <img src="aznews/img/trending/right4.jpg" alt="">
-                                </div>
-                                <div class="trand-right-cap">
-                                    <span class="color4">See beach</span>
-                                    <h4><a href="details.html">Welcome To The Best Model Winner Contest</a></h4>
-                                </div>
-                            </div>
-                            <div class="trand-right-single d-flex">
-                                <div class="trand-right-img">
-                                    <img src="aznews/img/trending/right5.jpg" alt="">
-                                </div>
-                                <div class="trand-right-cap">
-                                    <span class="color1">Skeping</span>
-                                    <h4><a href="details.html">Welcome To The Best Model Winner Contest</a></h4>
-                                </div>
-                            </div>
-                        </div>
+                        @empty
+                        Data masih kosong
+                        @endforelse
                     </div>
+
+
                 </div>
             </div>
+            <!-- Riht content -->
+            <!-- <div class="col-lg-4">
+                <div class="trand-right-single d-flex">
+                    <div class="trand-right-img">
+                        <img src="aznews/img/trending/right1.jpg" alt="">
+                    </div>
+                    <div class="trand-right-cap">
+                        <span class="color1">Concert</span>
+                        <h4><a href="details.html">Welcome To The Best Model Winner Contest</a></h4>
+                    </div>
+                </div>
+                <div class="trand-right-single d-flex">
+                    <div class="trand-right-img">
+                        <img src="aznews/img/trending/right2.jpg" alt="">
+                    </div>
+                    <div class="trand-right-cap">
+                        <span class="color3">sea beach</span>
+                        <h4><a href="details.html">Welcome To The Best Model Winner Contest</a></h4>
+                    </div>
+                </div>
+                <div class="trand-right-single d-flex">
+                    <div class="trand-right-img">
+                        <img src="aznews/img/trending/right3.jpg" alt="">
+                    </div>
+                    <div class="trand-right-cap">
+                        <span class="color2">Bike Show</span>
+                        <h4><a href="details.html">Welcome To The Best Model Winner Contest</a></h4>
+                    </div>
+                </div>
+                <div class="trand-right-single d-flex">
+                    <div class="trand-right-img">
+                        <img src="aznews/img/trending/right4.jpg" alt="">
+                    </div>
+                    <div class="trand-right-cap">
+                        <span class="color4">See beach</span>
+                        <h4><a href="details.html">Welcome To The Best Model Winner Contest</a></h4>
+                    </div>
+                </div>
+                <div class="trand-right-single d-flex">
+                    <div class="trand-right-img">
+                        <img src="aznews/img/trending/right5.jpg" alt="">
+                    </div>
+                    <div class="trand-right-cap">
+                        <span class="color1">Skeping</span>
+                        <h4><a href="details.html">Welcome To The Best Model Winner Contest</a></h4>
+                    </div>
+                </div>
+            </div> -->
+            <!-- </div>
+        </div>
+        </div> -->
         </div>
         <!-- Trending Area End -->
         <!--   Weekly-News start -->
-        <div class="weekly-news-area pt-50">
+        <!-- <div class="weekly-news-area pt-50">
             <div class="container">
                 <div class="weekly-wrapper">
-                    <!-- section Tittle -->
+                    
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="section-tittle mb-30">
@@ -318,13 +292,13 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
         <!-- End Weekly-News -->
         <!-- Whats New Start -->
         <section class="whats-news-area pt-50 pb-20">
             <div class="container">
                 <div class="row">
-                    <div class="col-lg-8">
+                    <div class="col-lg-12">
                         <div class="row d-flex justify-content-between">
                             <div class="col-lg-3 col-md-3">
                                 <div class="section-tittle mb-30">
@@ -663,12 +637,12 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-4">
-                        <!-- Section Tittle -->
+                    <!-- <div class="col-lg-4">
+                        
                         <div class="section-tittle mb-40">
                             <h3>Follow Us</h3>
                         </div>
-                        <!-- Flow Socail -->
+                       
                         <div class="single-follow mb-45">
                             <div class="single-box">
                                 <div class="follow-us d-flex align-items-center">
@@ -709,11 +683,11 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- New Poster -->
+                        
                         <div class="news-poster d-none d-lg-block">
                             <img src="aznews/img/news/news_card.jpg" alt="">
                         </div>
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </section>

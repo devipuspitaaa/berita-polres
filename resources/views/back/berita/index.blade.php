@@ -47,6 +47,7 @@
                                         <th>Kategori</th>
                                         <th>Slug</th>
                                         <th>Author</th>
+                                        <th>Gambar</th>
                                         <th style="width: 10%">Action</th>
                                     </tr>
                                 </thead>
@@ -59,6 +60,9 @@
                                         <td>{{ $b->kategori->nama_kategori}}</td>
                                         <td>{{ $b->slug}}</td>
                                         <td>{{ $b->user->name}}</td>
+                                        <td> 
+                                            <img src=" {{ asset('uploads/' . $b->gambar) }} " width="100"> 
+                                        </td>
                                         <td>
                                         <form action="{{ route('berita.destroy',$b->id) }}" method="POST">
                                                 <a href="{{ url('berita/update/'. $b->id) }}">

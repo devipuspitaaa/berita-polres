@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Berita;
+use App\Models\Kategori;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
-class DashboardController extends Controller
+class WelcomeController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,10 +15,12 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        $jmlusers = DB::table("users")->count();
-        $jmlberita = DB::table("berita")->count();
-        $jmlkategori = DB::table("kategoris")->count();
-        return view('back.dashboard', compact('jmlusers', 'jmlberita', 'jmlkategori'));
+        $kategori = Kategori::all();
+        $berita = Berita::all();
+        return view('welcome', [
+            'kategori' => $kategori,
+            'berita' => $berita
+        ]);
     }
 
     /**

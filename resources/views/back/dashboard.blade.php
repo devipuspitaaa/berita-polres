@@ -30,7 +30,7 @@
 						<div class="col col-stats ml-3 ml-sm-0">
 							<div class="numbers">
 								<p class="card-category">User</p>
-								<h4 class="card-title">isi</h4>
+								<h4 class="card-title">{{ $jmlusers }}</h4>
 							</div>
 						</div>
 					</div>
@@ -48,8 +48,8 @@
 						</div>
 						<div class="col col-stats ml-3 ml-sm-0">
 							<div class="numbers">
-								<p class="card-category">Article</p>
-								<h4 class="card-title">70</h4>
+								<p class="card-category">Berita</p>
+								<h4 class="card-title">{{ $jmlberita }}</h4>
 							</div>
 						</div>
 					</div>
@@ -68,7 +68,7 @@
 						<div class="col col-stats ml-3 ml-sm-0">
 							<div class="numbers">
 								<p class="card-category">Kategori</p>
-								<h4 class="card-title">80</h4>
+								<h4 class="card-title">{{ $jmlkategori }}</h4>
 							</div>
 						</div>
 					</div>

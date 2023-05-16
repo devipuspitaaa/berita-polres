@@ -97,7 +97,7 @@ class BeritaController extends Controller
                 'judul' => $request->judul,
                 'slug' => Str::slug($request->judul),
                 'body' => $request->body,
-                'kategori' => $request->kategori_id,
+                'kategori_id' => $request->kategori_id,
                 'is_active' => $request->is_active,
                 'user_id' => Auth::id(),
             ]);
@@ -110,7 +110,7 @@ class BeritaController extends Controller
                 'judul' => $request->judul,
                 'slug' => Str::slug($request->judul),
                 'body' => $request->body,
-                'kategori' => $request->kategori_id,
+                'kategori_id' => $request->kategori_id,
                 'user_id' => Auth::id(),
                 'gambar' => $request->file('gambar')->store('berita'),
                 'is_active' => $request->is_active,
